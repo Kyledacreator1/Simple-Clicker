@@ -6,20 +6,20 @@ const upgradeButton = document.getElementById('upgradeButton');
 const upgradeInfo = document.getElementById('upgradeInfo');
 
 let score = 0;
-let pointsPerClick = 1; // Points per click, starts at 1
-let upgradeCost = 10; // Cost of first upgrade
+let pointsPerClick = 1;
+let upgradeCost = 10;
 
 // Update the score on the screen
 function updateScore() {
     scoreDisplay.textContent = 'Score: ' + score;
 }
 
-// Function to handle the upgrade
+// Handle upgrade logic
 function upgrade() {
     if (score >= upgradeCost) {
-        score -= upgradeCost; // Deduct points for the upgrade
-        pointsPerClick += 1; // Increase points per click
-        upgradeCost = Math.floor(upgradeCost * 1.5); // Increase cost for next upgrade
+        score -= upgradeCost;
+        pointsPerClick += 1;
+        upgradeCost = Math.floor(upgradeCost * 1.5);
         upgradeInfo.textContent = `You need ${upgradeCost} points to upgrade.`;
         updateScore();
     } else {
@@ -27,20 +27,21 @@ function upgrade() {
     }
 }
 
-// Event listener for the "Click Me!" button
+// Click button action
 clickButton.addEventListener('click', () => {
-    score += pointsPerClick; // Earn points based on pointsPerClick
+    score += pointsPerClick;
     updateScore();
 });
 
-// Event listener for the "Upgrade" button
+// Upgrade button action
 upgradeButton.addEventListener('click', upgrade);
 
-// Event listener for the "Reset Game" button
+// Reset button action
 resetButton.addEventListener('click', () => {
     score = 0;
-    pointsPerClick = 1; // Reset points per click to 1
-    upgradeCost = 10; // Reset upgrade cost
+    pointsPerClick = 1;
+    upgradeCost = 10;
     upgradeInfo.textContent = `You need 10 points to upgrade.`;
     updateScore();
 });
+
